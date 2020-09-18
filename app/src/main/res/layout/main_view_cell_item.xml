@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/size_15"
+        android:paddingTop="@dimen/size_5"
+        android:paddingRight="@dimen/size_15"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/child_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/size_5"
+        android:paddingRight="@dimen/size_5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/child_horz_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_5" />
+
+    <TextView
+        android:id="@+id/view_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10"
+        android:paddingLeft="@dimen/size_15"
+        android:paddingTop="@dimen/size_8"
+        android:paddingRight="@dimen/size_15"
+        android:paddingBottom="@dimen/size_8"
+        android:text="@string/view_models_title"
+        android:textColor="@color/red_text_color"
+        android:textSize="@dimen/text_size_16"
+        android:visibility="gone" />
+
+</LinearLayout>

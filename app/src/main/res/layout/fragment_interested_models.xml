@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".fragments.InterestedModelsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/models_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/models_no_txt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/size_10"
+        android:text="@string/data_not_found_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_18"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.kenbie.fragments.PhotoGalleryFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/g_action_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/g_down_action"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_rounded_red_shape"
+            android:paddingTop="@dimen/size_10"
+            android:src="@drawable/g_down_arrow_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_10"
+            android:background="@color/red_text_color" />
+
+        <TextView
+            android:id="@+id/g_make_avatar_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_text_color"
+            android:drawableLeft="@drawable/g_make_it_avatar_icon"
+            android:drawablePadding="@dimen/size_15"
+            android:gravity="center_vertical"
+            android:padding="@dimen/size_20"
+            android:text="@string/g_make_avatar_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider_color" />
+
+        <TextView
+            android:id="@+id/g_share_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_text_color"
+            android:drawableLeft="@drawable/g_share_photo_icon"
+            android:drawablePadding="@dimen/size_15"
+            android:gravity="center_vertical"
+            android:padding="@dimen/size_20"
+            android:text="@string/g_share_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            android:background="@color/divider_color"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/g_delete_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_text_color"
+            android:drawableLeft="@drawable/g_delete_photo_icon"
+            android:drawablePadding="@dimen/size_15"
+            android:gravity="center_vertical"
+            android:padding="@dimen/size_20"
+            android:text="@string/g_delete_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+
+</RelativeLayout>

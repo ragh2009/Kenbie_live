@@ -1,0 +1,410 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.kenbie.fragments.EditBasicInfoFragment">
+
+    <include layout="@layout/top_header_bar_with_save" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_name"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_who_name"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/who_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_who"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:background="@color/white"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dialog"
+                    android:textColor="@color/gray_light"
+                    android:textSize="@dimen/text_size_16"
+                    android:theme="@style/SpinnerBackgroundCustom" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_email"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_address_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_dob"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/birth_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/et_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/gray_light"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_gender"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gender_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:background="@color/white"
+                    android:popupBackground="@color/white"
+                    android:spinnerMode="dialog"
+                    android:textColor="@color/gray_light"
+                    android:textSize="@dimen/text_size_16"
+                    android:theme="@style/SpinnerBackgroundCustom" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/t_company_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:id="@+id/t_company_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_company"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="textCapWords"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_mobile"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mob_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_location"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loc_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:popupBackground="@color/white"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_address"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="textCapWords"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_street"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/street_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="textCapWords"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_postal_code"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/postal_code_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <EditText
+                    android:id="@+id/et_postal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="phone"
+                    android:paddingTop="@dimen/size_5"
+                    android:paddingBottom="@dimen/size_5"
+                    android:textColor="@color/gray_light"
+                    android:textColorHint="@color/c_b3b3b3"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    android:id="@+id/t_from_agency"
+                    android:layout_width="@dimen/profile_left_aligned"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agency_title"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/agency_switch"
+                    style="@style/SwitchCompatStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--    <LinearLayout
+            android:id="@+id/g_take_pic"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@color/red_g_color"
+            android:gravity="center|center_horizontal"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/g_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_camera" />
+
+            <TextView
+                android:id="@+id/g_add_photo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_10"
+                android:text="@string/add_photo_title"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/g_take_pic"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:padding="@dimen/size_1">
+
+        <ImageView
+            android:id="@+id/g_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:id="@+id/g_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/red_g_color"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/g_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/ic_camera"
+            android:drawablePadding="@dimen/size_2"
+            android:gravity="center_horizontal"
+            android:text="@string/add_photo_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_12" />
+    </RelativeLayout>
+
+</LinearLayout>

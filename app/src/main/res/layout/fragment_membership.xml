@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.kenbie.fragments.MembershipFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/size_10"
+        android:paddingTop="@dimen/size_15"
+        android:paddingRight="@dimen/size_10"
+        android:paddingBottom="@dimen/size_15">
+
+        <TextView
+            android:id="@+id/m_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mem_title"
+            android:textColor="@color/c_b3b3b3"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:id="@+id/m_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mem_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/c_b3b3b3" />
+
+    <TextView
+        android:id="@+id/m_revoke_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/size_5"
+        android:text="@string/mem_renew_title"
+        android:textColor="@color/c_b3b3b3"
+        android:textSize="@dimen/text_size_12" />
+
+    <TextView
+        android:id="@+id/get_mem_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/size_10"
+        android:gravity="center"
+        android:paddingLeft="@dimen/size_20"
+        android:paddingTop="@dimen/size_10"
+        android:paddingRight="@dimen/size_20"
+        android:paddingBottom="@dimen/size_10"
+        android:text="@string/stop_title_"
+        android:textColor="@drawable/red_text_style"
+        android:textSize="@dimen/text_size_18" />
+
+</LinearLayout>

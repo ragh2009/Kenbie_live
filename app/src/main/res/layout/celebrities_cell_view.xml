@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_cele_action"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/size_12"
+    android:paddingTop="@dimen/size_5"
+    android:paddingBottom="@dimen/size_5">
+
+    <ImageView
+        android:id="@+id/cele_img"
+        android:layout_width="62dp"
+        android:layout_height="62dp" />
+
+    <LinearLayout
+        android:id="@+id/cele_red_bg"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:alpha=".8"
+        android:background="@drawable/bg_round_red"
+        android:gravity="center"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:id="@+id/cele_img_add"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cele_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_v_add_icon"
+            android:drawablePadding="@dimen/size_2"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="@string/celeb_title_"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_11" />
+    </LinearLayout>
+</RelativeLayout>

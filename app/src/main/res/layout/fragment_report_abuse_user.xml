@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.kenbie.fragments.ReportAbuseToUserFragment">
+
+    <include layout="@layout/top_header_bar_with_save" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/size_15">
+
+        <TextView
+            android:id="@+id/ra_reason_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_30"
+            android:padding="@dimen/size_5"
+            android:text="@string/report_abuse_reason_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/ra_reason_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:background="@drawable/white_bg_gray_outer"
+            android:inputType="textPersonName"
+            android:paddingLeft="@dimen/size_10"
+            android:paddingTop="@dimen/size_5"
+            android:paddingRight="@dimen/size_10"
+            android:paddingBottom="@dimen/size_5"
+            android:popupBackground="@color/white"
+            android:prompt="@string/report_abuse_reason_hint"
+            android:spinnerMode="dialog"
+            android:textColor="@color/gray_light"
+            android:textSize="@dimen/text_size_16"
+            android:theme="@style/SpinnerBackgroundCustom" />
+
+        <TextView
+            android:id="@+id/ra_comment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:padding="@dimen/size_5"
+            android:text="@string/report_abuse_comments"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16" />
+
+        <EditText
+            android:id="@+id/et_ra_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_bg"
+            android:gravity="top"
+            android:hint="@string/report_abuse_comments_hint"
+            android:imeOptions="actionDone"
+            android:lines="6"
+            android:padding="@dimen/size_10"
+            android:textColor="@color/gray_light"
+            android:textColorHint="@color/c_cccccc"
+            android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+</LinearLayout>
