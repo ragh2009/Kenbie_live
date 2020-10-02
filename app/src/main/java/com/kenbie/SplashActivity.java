@@ -23,6 +23,7 @@ import com.kenbie.connection.MConnection;
 import com.kenbie.data.LanguageParser;
 import com.kenbie.listeners.APIResponseHandler;
 import com.kenbie.model.MsgUserItem;
+import com.kenbie.model.UserItem;
 import com.kenbie.util.BadgeUtils;
 import com.kenbie.util.Constants;
 import com.kenbie.util.Utility;
@@ -85,15 +86,28 @@ public class SplashActivity extends AppCompatActivity implements APIResponseHand
                     if(data.containsKey("sender_profile"))
                         value.setUser_img((String) data.get("sender_profile"));
                     value.setUid(Integer.valueOf((String) data.get("sender_id")));
-                    intent = new Intent(this, MessageConvActivity.class);
-                    intent.putExtra("MsgItem", value);
-                    intent.putExtra("Notification", true);
+
+                    if (mPref.getInt("MemberShip", 0) == 0) {
+                        UserItem userItem = new UserItem();
+                        userItem.setId(Integer.valueOf(mPref.getString("UserId", "0")));
+                        userItem.setFirstName(mPref.getString("Name", ""));
+                        userItem.setUserPic(mPref.getString("ProfilePic", ""));
+                        Intent intent1 = new Intent(this, KenbieNavigationActivity.class);
+                        intent1.putExtra("NavType", 7);
+                        intent1.putExtra("Type", 1);
+                        intent1.putExtra("UserItem", userItem);
+                        startActivity(intent1);
+                    }else {
+                        intent = new Intent(this, MessageConvActivity.class);
+                        intent.putExtra("MsgItem", value);
+                        intent.putExtra("Notification", true);
 //                    intent = new Intent(this, KenbieActivity.class);
 //                    intent.putExtra("MsgItem", value);
 //                    intent.putExtra("NavType", 8);
 //                    intent.putExtra("Notification", true);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
                     return true;
                 } else {
                     intent = new Intent(this, KenbieActivity.class);

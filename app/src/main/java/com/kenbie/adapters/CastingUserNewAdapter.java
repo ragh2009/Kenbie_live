@@ -279,7 +279,5 @@ public class CastingUserNewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
         return ssb;
-
     }
-
 }

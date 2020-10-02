@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -356,10 +357,10 @@ public class UserProfileFragment extends BaseFragment implements APIResponseHand
             op.setName(name[i]);
             op.setImgId(images[i]);
             if (i == 0) { // About
-                if (profileInfo.getAbout_user() != null && !profileInfo.getAbout_user().equalsIgnoreCase("null") && profileInfo.getAbout_user().length() > 0) {
+                /*if (profileInfo.getAbout_user() != null && !profileInfo.getAbout_user().equalsIgnoreCase("null") && profileInfo.getAbout_user().length() > 0) {
                     op.setOptionData(profileInfo.getAbout_user());
                     values.add(op);
-                }
+                }*/
             } else if (i == 1) { // Connect with me
                 if (profileInfo.getUserSocial() != null && profileInfo.getUserSocial().size() > 0) {
                     op.setOptionDataArrayList(profileInfo.getUserSocial());
@@ -419,6 +420,15 @@ public class UserProfileFragment extends BaseFragment implements APIResponseHand
             params.put("login_key", mActivity.mPref.getString("LoginKey", ""));
             params.put("login_token", mActivity.mPref.getString("LoginToken", ""));
             params.put("profile_user_id", userItem.getId() + "");
+            // TODO v82
+            PackageInfo pInfo = null;
+            try {
+                pInfo = mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0);
+                params.put("reqAPPVER", pInfo.versionCode + "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             if (type == 3)
                 params.put("referred", "visit");
             else if (type == 4)

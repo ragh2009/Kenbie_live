@@ -152,7 +152,7 @@ public class KenbieNavigationActivity extends KenbieBaseActivity implements APIR
         } else if (navType == 10) {
             replaceFragment(new SearchFragment(), false, false);
 //            navigationView.getMenu().getItem(2).setChecked(true);
-        } else if (navType == 11) {
+        } else if (navType == 11 || navType == 22) {
             ModelsFragment modelsFragment = new ModelsFragment();
             modelsFragment.setArguments(getIntent().getExtras());
             replaceFragment(modelsFragment, false, false);
@@ -172,7 +172,7 @@ public class KenbieNavigationActivity extends KenbieBaseActivity implements APIR
         } else if (navType == 16) { // Edit Profile
             EditProfileFragment profileFragment = new EditProfileFragment();
             Bundle b = new Bundle();
-            b.putSerializable("ProfileInfo",  getIntent().getSerializableExtra("ProfileInfo"));
+            b.putSerializable("ProfileInfo", getIntent().getSerializableExtra("ProfileInfo"));
             profileFragment.setArguments(b);
             replaceFragment(profileFragment, false, false);
         } else if (navType == 17) { // Add/Edit casting
@@ -201,7 +201,7 @@ public class KenbieNavigationActivity extends KenbieBaseActivity implements APIR
             b.putBoolean("PaymentNow", getIntent().getBooleanExtra("PaymentNow", false));
             addCastingInfoFragment.setArguments(b);
             replaceFragment(addCastingInfoFragment, false, false);
-        }  else if (navType == 21) { // Add celebrity info
+        } else if (navType == 21) { // Add celebrity info
             CelebrityInfoFragment memInfoFragment = new CelebrityInfoFragment();
             Bundle b = new Bundle();
             b.putSerializable("UserInfo", getIntent().getSerializableExtra("UserInfo"));
@@ -210,7 +210,8 @@ public class KenbieNavigationActivity extends KenbieBaseActivity implements APIR
             b.putInt("Type", getIntent().getIntExtra("Type", 1));
             memInfoFragment.setArguments(b);
             replaceFragment(memInfoFragment, false, false);
-        } /*else {
+        }
+        /*else {
 //            navigationView.getMenu().getItem(0).setChecked(true);
 //            fragmentStateManager.changeFragment(0);
 //            replaceFragment(new UserListFragment(), false, false);
@@ -721,7 +722,11 @@ public class KenbieNavigationActivity extends KenbieBaseActivity implements APIR
 //            removeAllNotificationData();
             getIntent().putExtra("Notification", false);
             getIntent().putExtra("type", 0);
-            replaceFragment(new UserListFragment(), false, false);
+//            replaceFragment(new UserListFragment(), false, false);
+            Intent i = new Intent(this, KenbieActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
         } else
             super.onBackPressed();
     }

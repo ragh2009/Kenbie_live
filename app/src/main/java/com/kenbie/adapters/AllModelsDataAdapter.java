@@ -44,9 +44,8 @@ public class AllModelsDataAdapter extends RecyclerView.Adapter<RecyclerView.View
     private boolean isLastPage;
     private String bTitle = "";
 
-    public AllModelsDataAdapter(Context context, ArrayList<UserItem> userItemArrayList, UserActionListener mListeners, int type, boolean lPage) {
-        SharedPreferences mPref = context.getSharedPreferences("kPrefs", MODE_PRIVATE);
-        bTitle = mPref.getString("56", "You've reached the end of the list");
+    public AllModelsDataAdapter(Context context, ArrayList<UserItem> userItemArrayList, UserActionListener mListeners, int type, boolean lPage, String title) {
+        this.bTitle = title;
         this.mUserData = userItemArrayList;
         this.mContext = context;
         this.isLastPage = lPage;

@@ -392,14 +392,14 @@ public class KenbieActivity extends KenbieBaseActivity implements APIResponseHan
         if (currentFragment != null) {
             fragmentTransaction.hide(currentFragment);
         }
-        if (isReplace) {
+        if (isReplace)
             fragmentTransaction.show(fragment);
-        } else {
+        else {
             fragmentTransaction.add(container.getId(), fragment, fragment.getClass().getSimpleName());
-            if (needToAddBackStack) {
+            if (needToAddBackStack)
                 fragmentTransaction.addToBackStack(null);
-            }
         }
+
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commit();
@@ -435,7 +435,7 @@ public class KenbieActivity extends KenbieBaseActivity implements APIResponseHan
                 fragmentManager = getSupportFragmentManager();
             String fragmentTag = null;
             if (fragmentManager.getBackStackEntryCount() > 0) {
-                for (int i = fragmentManager.getBackStackEntryCount(); i > 0;) {
+                for (int i = fragmentManager.getBackStackEntryCount(); i > 0; ) {
                     String tag = fragmentManager.getBackStackEntryAt(--i).getName();
                     Fragment fragment = fragmentManager.findFragmentByTag(tag);
                     if (fragment != null && fragment.isVisible()) {
@@ -444,11 +444,13 @@ public class KenbieActivity extends KenbieBaseActivity implements APIResponseHan
                     }
                 }
             }
-            if (fragmentTag == null) {
+            if (fragmentTag == null)
                 fragmentTag = "UserListFragment";
+
+            if (fragmentTag != null) {
+                currentFragment = fragmentManager.findFragmentByTag(fragmentTag);
+                resumeFragment(currentFragment);
             }
-            currentFragment = fragmentManager.findFragmentByTag(fragmentTag);
-            resumeFragment(currentFragment);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -457,12 +459,12 @@ public class KenbieActivity extends KenbieBaseActivity implements APIResponseHan
 
     private void resumeFragment(Fragment fragment) {
         if (fragment != null) {
-            if (fragment instanceof BaseFragment) {
+            if (fragment instanceof BaseFragment)
                 ((BaseFragment) fragment).resume();
-            } else {
+            else
                 fragment.onResume();
-            }
         }
+
         /*int index;
         if (currentFragment instanceof UserListFragment) {
             index = 0;
@@ -496,9 +498,9 @@ public class KenbieActivity extends KenbieBaseActivity implements APIResponseHan
 
             fragmentTransaction.show(fragment);
 
-            if (currentFragment != null && currentFragment != fragment) {
+            if (currentFragment != null && currentFragment != fragment)
                 fragmentTransaction.hide(currentFragment);
-            }
+
             Log.i("SearchCurrentFragment", currentFragment.getClass().getName() + "::::::::SearchBackFragment" + fragment.getClass().getName());
 
             fragmentTransaction.setPrimaryNavigationFragment(fragment);

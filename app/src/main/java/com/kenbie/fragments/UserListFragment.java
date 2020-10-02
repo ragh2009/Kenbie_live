@@ -895,6 +895,7 @@ public class UserListFragment extends BaseFragment implements APIResponseHandler
                     userItemArrayList.addAll(kActivity.userData.get(i).getUserItems());
             }
 
+
             ModelsFragment modelsFragment = new ModelsFragment();
             Bundle bundle = new Bundle();
             bundle.putSerializable("Models", userItemArrayList);
@@ -905,7 +906,12 @@ public class UserListFragment extends BaseFragment implements APIResponseHandler
             else // if(type == 7)
                 bundle.putInt("Type", 2); // Agency
             modelsFragment.setArguments(bundle);
-            kActivity.replaceFragment(modelsFragment, true, false);
+//            kActivity.replaceFragment(modelsFragment, true, false);
+
+            Intent intent = new Intent(kActivity, KenbieNavigationActivity.class);
+            intent.putExtra("NavType", 22);
+            intent.putExtras(bundle);
+            startActivity(intent);
         } else {
             Intent intent = new Intent(kActivity, KenbieNavigationActivity.class);
             intent.putExtra("NavType", 6); // 1 -fav,2 - like

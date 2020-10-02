@@ -146,6 +146,21 @@ public class MessageConvActivity extends KenbieBaseActivity implements APIRespon
         mProgress.setCancelable(true);
         mProgress.setCanceledOnTouchOutside(false);
 
+        if (mPref.getInt("MemberShip", 0) == 0) {
+            UserItem userItem = new UserItem();
+            userItem.setId(userId);
+            userItem.setFirstName(mPref.getString("Name", ""));
+            userItem.setUserPic(mPref.getString("ProfilePic", ""));
+            Intent intent1 = new Intent(this, KenbieNavigationActivity.class);
+            intent1.putExtra("NavType", 7);
+            intent1.putExtra("Type", 1);
+            intent1.putExtra("UserItem", userItem);
+            intent1.putExtra("Notification", getIntent().getBooleanExtra("Notification", false));
+            startActivity(intent1);
+            finish();
+            return;
+        }
+
         final View activityRootView = findViewById(R.id.message_layout);
         activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -1500,7 +1515,7 @@ public class MessageConvActivity extends KenbieBaseActivity implements APIRespon
         if (getIntent().getBooleanExtra("Notification", false)) {
 //            removeAllNotificationData();
             getIntent().putExtra("Notification", false);
-            Intent intent = new Intent(this, KenbieNavigationActivity.class);
+            Intent intent = new Intent(this, KenbieActivity.class);
             intent.putExtra("MsgItem", msgUserItem);
             intent.putExtra("NavType", 8);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -1,8 +1,11 @@
 package com.kenbie.fragments;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +70,13 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         modelsGrid = view.findViewById(R.id.models_grid);
 //        noText = view.findViewById(R.id.no_text);
-//        noText.setText(kActivity.mPref.getString("56", "You've reached the end of the list"));
+//        noText.setText(mActivity.mPref.getString("56", "You've reached the end of the list"));
 //        noText.setTypeface(KenbieApplication.S_SEMI_BOLD);
 
 //        modelsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                kActivity.viewUserProfile(userItemArrayList.get(position));
+//                mActivity.viewUserProfile(userItemArrayList.get(position));
 //            }
 //        });
 
@@ -87,7 +90,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
         /**
          * add scroll listener while user reach in bottom load more will call
          */
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(kActivity, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mActivity, 2);
         modelsGrid.setLayoutManager(gridLayoutManager);
         modelsGrid.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -175,10 +178,22 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
                 displayUsersData();
             } else {
                 modelsGrid.setVisibility(View.GONE);
-                kActivity.showMessageWithTitle(kActivity, kActivity.mPref.getString("20", "Alert!"), errorMessage);
+                try {
+                    new AlertDialog.Builder(mActivity)
+                            .setTitle("")
+                            .setMessage(errorMessage)
+                            .setPositiveButton(mActivity.mPref.getString("21", "Yes"), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    mActivity.onBackPressed();
+                                }
+                            })
+                            .setIcon(R.mipmap.ic_stat_notification)
+                            .show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-//                noText.setVisibility(View.VISIBLE);
-//                noText.setText(errorMessage);
             }
         } else
             gettingUserList();
@@ -187,44 +202,44 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
     }
 
     private void gettingSearchResult() {
-        if (kActivity.searchParams != null) {
-            if (kActivity.isOnline()) { // 1 - models, 2 - photographer, 3 - agency
+        if (mActivity.searchParams != null) {
+            if (mActivity.isOnline()) { // 1 - models, 2 - photographer, 3 - agency
                 isLoading = true;
                 if (currentPage == 1)
                     mySwipeRefreshLayout.setRefreshing(true);
                 else
                     mProgressBar.setVisibility(View.VISIBLE);
-                kActivity.mConnection.postRequestWithHttpHeaders(kActivity, "search/page/" + currentPage, this, kActivity.searchParams, 103);
+                mActivity.mConnection.postRequestWithHttpHeaders(mActivity, "search/page/" + currentPage, this, mActivity.searchParams, 103);
             } else
                 displayUsersData();
         }
     }
 
     private void gettingUserList() {
-        if (kActivity.isOnline()) { // 1 - models, 2 - photographer, 3 - agency
+        if (mActivity.isOnline()) { // 1 - models, 2 - photographer, 3 - agency
             isLoading = true;
             if (currentPage == 1)
                 mySwipeRefreshLayout.setRefreshing(true);
             else
                 mProgressBar.setVisibility(View.VISIBLE);
             Map<String, String> params = new HashMap<String, String>();
-            params.put("user_id", kActivity.mPref.getString("UserId", ""));
-            params.put("login_key", kActivity.mPref.getString("LoginKey", ""));
-            params.put("login_token", kActivity.mPref.getString("LoginToken", ""));
-            if (kActivity.mPref.getBoolean("isLogin", false)) {
-                params.put("longitude", kActivity.longitude + "");
-                params.put("latitude", kActivity.latitude + "");
+            params.put("user_id", mActivity.mPref.getString("UserId", ""));
+            params.put("login_key", mActivity.mPref.getString("LoginKey", ""));
+            params.put("login_token", mActivity.mPref.getString("LoginToken", ""));
+            if (mActivity.mPref.getBoolean("isLogin", false)) {
+                params.put("longitude", mActivity.longitude + "");
+                params.put("latitude", mActivity.latitude + "");
             } else
-                params.put("ip", kActivity.ip + "");
+                params.put("ip", mActivity.ip + "");
 
             params.put("user_type", mType + "");
-            kActivity.mConnection.postRequestWithHttpHeaders(kActivity, (mType == 3 ? "getUsersNearBy/page/" : "getUsers/page/") + currentPage, this, params, 101);
-//            kActivity.mConnection.postRequestWithHttpHeaders(kActivity, "getUsers/page/" + currentPage, this, params, 101);
+            mActivity.mConnection.postRequestWithHttpHeaders(mActivity, (mType == 3 ? "getUsersNearBy/page/" : "getUsers/page/") + currentPage, this, params, 101);
+//            mActivity.mConnection.postRequestWithHttpHeaders(mActivity, "getUsers/page/" + currentPage, this, params, 101);
         } else {
             displayUsersData();
 
             mySwipeRefreshLayout.setRefreshing(false);
-//            kActivity.showMessageWithTitle(kActivity, "Alert", Constants.NETWORK_FAIL_MSG);
+//            mActivity.showMessageWithTitle(mActivity, "Alert", Constants.NETWORK_FAIL_MSG);
         }
     }
 
@@ -232,7 +247,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
     public void getError(String error, int APICode) {
         if (error != null)
             if (error.equalsIgnoreCase("com.android.volley.error.AuthFailureError"))
-                kActivity.logoutProcess();
+                mActivity.logoutProcess();
             else {
                 if (APICode == 101 || APICode == 103) {
                     if (currentPage == 1)
@@ -242,10 +257,10 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
                         displayUsersData();
                     }
                 } else
-                    kActivity.showMessageWithTitle(kActivity, kActivity.mPref.getString("20", "Alert!"), error);
+                    mActivity.showMessageWithTitle(mActivity, mActivity.mPref.getString("20", "Alert!"), error);
             }
         else
-            kActivity.showMessageWithTitle(kActivity, kActivity.mPref.getString("20", "Alert!"), kActivity.mPref.getString("270", "Something Wrong! Please try later."));
+            mActivity.showMessageWithTitle(mActivity, mActivity.mPref.getString("20", "Alert!"), mActivity.mPref.getString("270", "Something Wrong! Please try later."));
 
         isLoading = false;
         mProgressBar.setVisibility(View.GONE);
@@ -275,7 +290,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
                     }
 
                 } else if (APICode == 103) {
-                    ArrayList<UserItem> tempData = kActivity.getParseSearchData(jo.getString("data"), 1);
+                    ArrayList<UserItem> tempData = mActivity.getParseSearchData(jo.getString("data"), 1);
                     if (tempData != null && tempData.size() > 0)
                         userItemArrayList.addAll(tempData);
                     else
@@ -297,7 +312,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
     @Override
     public void networkError(String error, int APICode) {
         isLoading = false;
-        kActivity.showMessageWithTitle(kActivity, kActivity.mPref.getString("20", "Alert!"), kActivity.mPref.getString("269", "Network failed! Please try later."));
+        mActivity.showMessageWithTitle(mActivity, mActivity.mPref.getString("20", "Alert!"), mActivity.mPref.getString("269", "Network failed! Please try later."));
         mySwipeRefreshLayout.setRefreshing(false);
         mProgressBar.setVisibility(View.GONE);
     }
@@ -313,7 +328,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
                 value.setId(jo.getInt("id"));
                 value.setFirstName(jo.getString("first_name"));
                 if (jo.getString("birth_year") != null && !jo.getString("birth_year").equalsIgnoreCase("null") && jo.getString("birth_year").length() > 0)
-                    value.setBirthYear(kActivity.utility.getYearsCountFromDate(jo.getString("birth_year"), jo.getString("birth_month"), jo.getString("birth_day")));
+                    value.setBirthYear(mActivity.utility.getYearsCountFromDate(jo.getString("birth_year"), jo.getString("birth_month"), jo.getString("birth_day")));
 
 //                value.setBirthYear(jo.getInt("birth_year"));
 //                value.setBirthMonth(jo.getInt("birth_month"));
@@ -339,16 +354,16 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
         if (isInit || isVisible()) {
             isInit = false;
             if (mType == 1) // Model
-                kActivity.updateActionBar(4, kActivity.mPref.getString("308", "MODELS"), false, true, false);
+                mActivity.updateActionBar(4, mActivity.mPref.getString("308", "MODELS"), false, true, false);
             else if (mType == 2) // Agency
-                kActivity.updateActionBar(4, kActivity.mPref.getString("309", "AGENCIES"), false, true, false);
+                mActivity.updateActionBar(4, mActivity.mPref.getString("309", "AGENCIES"), false, true, false);
             else if (mType == 3) // Photographers
-                kActivity.updateActionBar(4, kActivity.mPref.getString("310", "PHOTOGRAPHERS"), false, true, false);
+                mActivity.updateActionBar(4, mActivity.mPref.getString("310", "PHOTOGRAPHERS"), false, true, false);
             else //Missing
-                kActivity.updateActionBar(2, kActivity.mPref.getString("57", "SEARCH RESULTS"), false, true, false);
+                mActivity.updateActionBar(2, mActivity.mPref.getString("57", "SEARCH RESULTS"), false, true, false);
         }
-        if (dataType != 2 && currentPage != 1)
-            onRefresh();
+//        if (dataType != 2 && currentPage != 1)
+//            onRefresh();
     }
 
     private void displayUsersData() {
@@ -358,7 +373,7 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
 //                bundle.putInt("Type", 2); // Agency
 
             if (currentPage == 1) {
-                userChildDataAdapter = new AllModelsDataAdapter(kActivity, userItemArrayList, this, dataType == 2 ? 4 : mType, isLastPage);
+                userChildDataAdapter = new AllModelsDataAdapter(mActivity, userItemArrayList, this, dataType == 2 ? 4 : mType, isLastPage, mActivity.mPref.getString("56", "You've reached the end of the list"));
                 modelsGrid.setAdapter(userChildDataAdapter);
             } else
                 userChildDataAdapter.refreshData(userItemArrayList, isLastPage);
@@ -369,13 +384,13 @@ public class ModelsFragment extends BaseFragment implements APIResponseHandler, 
 
     @Override
     public void getUserAction(UserItem userItem, int type) {
-//        kActivity.viewUserProfile(userItemArrayList.get(userItemArrayList.indexOf(userItem)));
-//        kActivity.viewUserProfile(userItem);
+//        mActivity.viewUserProfile(userItemArrayList.get(userItemArrayList.indexOf(userItem)));
+//        mActivity.viewUserProfile(userItem);
 
-        Intent intent = new Intent(kActivity, KenbieNavigationActivity.class);
+        Intent intent = new Intent(mActivity, KenbieNavigationActivity.class);
         intent.putExtra("NavType", 3);
         intent.putExtra("UserItem", userItem);
-        startActivity(intent);
+        mActivity.startActivity(intent);
     }
 
     @Override

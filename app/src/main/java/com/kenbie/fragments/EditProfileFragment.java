@@ -26,7 +26,10 @@ import java.util.Map;
 
 
 public class EditProfileFragment extends BaseFragment implements APIResponseHandler {
-    private String[] editOptions = {"Your Basic Information", "Information", "About Me", "Photo Gallery", "Discipline", "Categories", "Social Links", "Statistics", "Language"};
+    // V 1.2 removed About Me
+//    private String[] editOptions = {"Your Basic Information", "Information", "About Me", "Photo Gallery", "Discipline", "Categories", "Social Links", "Statistics", "Language"};
+
+    private String[] editOptions = {"Your Basic Information", "Information", "Photo Gallery", "Discipline", "Categories", "Social Links", "Statistics", "Language"};
 
     //    private String[] editOptions = {mActivity.mPref.getString("219", "Your Basic Information"), mActivity.mPref.getString("211", "Information"), mActivity.mPref.getString("220", "About Me"), mActivity.mPref.getString("221", "Photo Gallery"),  mActivity.mPref.getString("81", "Discipline"), mActivity.mPref.getString("112", "Categories"),  mActivity.mPref.getString("222", "Social Links"), mActivity.mPref.getString("223", "Statistics"), mActivity.mPref.getString("93", "Language")};
     //Old- private String[] editOptions = {"Your Basic Information", "Social Links", "Statistics", "Casting Settings", "Photo Gallery", "Who Can See The Profile?", "About Me", "Information", "Discipline", "Categories"};
@@ -77,32 +80,34 @@ public class EditProfileFragment extends BaseFragment implements APIResponseHand
                         mActivity.editBasicInfo(profileInfo, 0);
                     else if (position == 1) // Information
                         mActivity.updateUserInformation(profileInfo);
-                    else if (position == 2) // About Me
-                        mActivity.updateUserAboutInfo(profileInfo);
-                    else if (position == 3) // Photo Gallery
+                        // V 1.2 removed About Me
+                   /* else if (position == 2) // About Me
+                        mActivity.updateUserAboutInfo(profileInfo);*/
+                    else if (position == 2) // Photo Gallery
                         mActivity.viewPhotoGallery(profileInfo);
-                    else if (position == 4) // 8 - Discipline
+                    else if (position == 3) // 8 - Discipline
                         mActivity.updateUserSettings(8, profileInfo);
-                    else if (position == 5) //  9 - Categories
+                    else if (position == 4) //  9 - Categories
                         mActivity.updateUserSettings(9, profileInfo);
-                    else if (position == 6) // Social Links
+                    else if (position == 5) // Social Links
                         mActivity.seeSocialOptions(profileInfo.getUserSocial());
-                    else if (position == 7) { // Statistics
+                    else if (position == 6) { // Statistics
                         mActivity.seeUserStatisticsFragment(profileInfo);
-                    } else if (position == 8)
+                    } else if (position == 7)
                         mActivity.viewLanguageUpdateList(profileInfo);
                 } else {
                     if (position == 0) // Your Basic Information
                         mActivity.editBasicInfo(profileInfo, 0);
-                    else if (position == 1) // About Me
-                        mActivity.updateUserAboutInfo(profileInfo);
-                    else if (position == 2) // Photo Gallery
+                        // V 1.2 removed About Me
+                  /*  else if (position == 1) // About Me
+                        mActivity.updateUserAboutInfo(profileInfo);*/
+                    else if (position == 1) // Photo Gallery
                         mActivity.viewPhotoGallery(profileInfo);
-                    else if (position == 3) // Social Links
+                    else if (position == 2) // Social Links
                         mActivity.seeSocialOptions(profileInfo.getUserSocial());
-                    else if (position == 4) { // Statistics
+                    else if (position == 3) { // Statistics
                         mActivity.seeUserStatisticsFragment(profileInfo);
-                    } else if (position == 5)
+                    } else if (position == 4)
                         mActivity.viewLanguageUpdateList(profileInfo);
                 }
 //                else if(position == 3 || position == 5 || position == 8 || position == 9) // 3-"Casting Settings", 5 - "Who Can See The Profile?", 8 - Discipline, 9 - Categories
@@ -179,24 +184,26 @@ public class EditProfileFragment extends BaseFragment implements APIResponseHand
 
     private void optionAdded() {
         if (userType == 1) {
-            editOptions = new String[9];
+            editOptions = new String[8];
             editOptions[0] = mActivity.mPref.getString("219", "Your Basic Information");
             editOptions[1] = mActivity.mPref.getString("211", "Information");
-            editOptions[2] = mActivity.mPref.getString("220", "About Me");
-            editOptions[3] = mActivity.mPref.getString("221", "Photo Gallery");
-            editOptions[4] = mActivity.mPref.getString("81", "Discipline");
-            editOptions[5] = mActivity.mPref.getString("112", "Categories");
-            editOptions[6] = mActivity.mPref.getString("222", "Social Links");
-            editOptions[7] = mActivity.mPref.getString("223", "Statistics");
-            editOptions[8] = mActivity.mPref.getString("93", "Language");
-        } else {
-            editOptions = new String[6];
-            editOptions[0] = mActivity.mPref.getString("219", "Your Basic Information");
-            editOptions[1] = mActivity.mPref.getString("220", "About Me");
+            // V 1.2 removed About Me
+         //   editOptions[2] = mActivity.mPref.getString("220", "About Me");
             editOptions[2] = mActivity.mPref.getString("221", "Photo Gallery");
-            editOptions[3] = mActivity.mPref.getString("222", "Social Links");
-            editOptions[4] = mActivity.mPref.getString("223", "Statistics");
-            editOptions[5] = mActivity.mPref.getString("93", "Language");
+            editOptions[3] = mActivity.mPref.getString("81", "Discipline");
+            editOptions[4] = mActivity.mPref.getString("112", "Categories");
+            editOptions[5] = mActivity.mPref.getString("222", "Social Links");
+            editOptions[6] = mActivity.mPref.getString("223", "Statistics");
+            editOptions[7] = mActivity.mPref.getString("93", "Language");
+        } else {
+            editOptions = new String[5];
+            editOptions[0] = mActivity.mPref.getString("219", "Your Basic Information");
+            // V 1.2 removed About Me
+//            editOptions[1] = mActivity.mPref.getString("220", "About Me");
+            editOptions[1] = mActivity.mPref.getString("221", "Photo Gallery");
+            editOptions[2] = mActivity.mPref.getString("222", "Social Links");
+            editOptions[3] = mActivity.mPref.getString("223", "Statistics");
+            editOptions[4] = mActivity.mPref.getString("93", "Language");
         }
 
         SettingAdapter mAdapter = new SettingAdapter(mActivity, editOptions);

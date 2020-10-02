@@ -34,7 +34,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             if (data != null) {
                 parseNotificationData(data);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -23,8 +23,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.widget.NestedScrollView;
 
-import com.kenbie.KenbieActivity;
 import com.kenbie.KenbieApplication;
+import com.kenbie.KenbieNavigationActivity;
 import com.kenbie.R;
 import com.kenbie.adapters.AutoCompleteAdapter;
 import com.kenbie.adapters.SearchSingleChoiceAdapter;
@@ -61,7 +61,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     public static SearchFragment newInstance() {
         // Required empty public constructor
-         return new SearchFragment();
+        return new SearchFragment();
     }
 
     @Override
@@ -607,7 +607,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                 if (error.equalsIgnoreCase("com.android.volley.error.AuthFailureError"))
                     kActivity.logoutProcess();
                 else {
-                    Intent intent = new Intent(kActivity, KenbieActivity.class);
+                    Intent intent = new Intent(kActivity, KenbieNavigationActivity.class);
 //                    ModelsFragment modelsFragment = new ModelsFragment();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("Models", new ArrayList<UserItem>());
@@ -678,7 +678,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 //                modelsFragment.setArguments(bundle);
 //                kActivity.replaceFragment(modelsFragment, true, false);
 
-                Intent intent = new Intent(kActivity, KenbieActivity.class);
+                Intent intent = new Intent(kActivity, KenbieNavigationActivity.class);
 //                    ModelsFragment modelsFragment = new ModelsFragment();
                 bundle.putInt("NavType", 11);
 //                    modelsFragment.setArguments(bundle);
@@ -1004,7 +1004,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                 LocationItem item = (LocationItem) sLoc.getTag();
                 if (item != null && item.getCity() != null) {
                     params.put("city", item.getCity());
-                    params.put("country", item.getCountryId()+"");
+                    params.put("country", item.getCountryId() + "");
                     params.put("latitude", item.getLatitude() + "");
                     params.put("longitude", item.getLongitude() + "");
                 } else {
